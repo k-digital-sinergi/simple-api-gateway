@@ -6,8 +6,8 @@ import (
 	"github.com/go-redis/redis_rate/v9"
 	"log"
 	"net/http"
-	"simple-api-gateway/connection"
 	"simple-api-gateway/pkg/util"
+	"simple-api-gateway/redis"
 )
 
 const (
@@ -17,7 +17,7 @@ const (
 func RateLimitMiddleWare() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		ip := ctx.ClientIP()
-		limiter := redis_rate.NewLimiter(connection.GetRedisConnection(ctx))
+		limiter := redis_rate.NewLimiter(redis.GetRedisConnection(ctx))
 		result, err := limiter.Allow(ctx, ip, redis_rate.PerMinute(rateLimit))
 		if err != nil {
 			log.Panic(err)
