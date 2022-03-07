@@ -5,6 +5,7 @@ package utl.grpc.customer;
 
 service CustomerService {
   rpc List(Empty) returns (Response) {}
+  rpc Get(Request) returns (Response) {}
   rpc Create(Request) returns (Response) {}
   rpc Update(Request) returns (Response) {}
   rpc Delete(Request) returns (Response) {}

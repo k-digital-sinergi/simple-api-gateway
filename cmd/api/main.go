@@ -3,8 +3,8 @@ package main
 import (
 	"log"
 	"simple-api-gateway/config"
-	"simple-api-gateway/connection"
 	"simple-api-gateway/pkg/api"
+	"simple-api-gateway/redis"
 )
 
 func main() {
@@ -17,5 +17,5 @@ func init() {
 		log.Fatal("error load env")
 	}
 
-	connection.OpenRedisConnection()
+	redis.OpenRedisConnection()
 }

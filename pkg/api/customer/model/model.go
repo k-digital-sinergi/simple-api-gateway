@@ -1,10 +1,14 @@
 package model
 
 type Customer struct {
-	ID      int     `json:"id" uri:"id" binding:"required,min=1"`
+	ID      int64   `json:"id" uri:"id" binding:"required,min=1"`
 	Phone   string  `json:"phone"`
 	Name    string  `json:"name"`
 	Balance float64 `json:"balance"`
+}
+
+type GetRequest struct {
+	CustID int64 `json:"cust_id" uri:"id" binding:"required,min=1"`
 }
 
 type CreateRequest struct {
@@ -18,5 +22,5 @@ type UpdateRequest struct {
 }
 
 type DeleteRequest struct {
-	CustID int `json:"cust_id" uri:"id" binding:"required,min=1"`
+	CustID int64 `json:"cust_id" uri:"id" binding:"required,min=1"`
 }
