@@ -1,0 +1,21 @@
+syntax = "proto3";
+option go_package = "proto/customer";
+
+package utl.grpc.customer;
+
+service CustomerService {
+  rpc List(Empty) returns (Response) {}
+  rpc Create(Request) returns (Response) {}
+  rpc Update(Request) returns (Response) {}
+  rpc Delete(Request) returns (Response) {}
+}
+
+message Empty {}
+
+message Request {
+  bytes Body = 1;
+}
+
+message Response {
+  bytes Body = 1;
+}
