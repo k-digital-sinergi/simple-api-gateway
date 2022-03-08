@@ -30,7 +30,7 @@ func (h *HTTP) list(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(http.StatusOK, customers)
+	ctx.JSON(http.StatusOK, model.ListResponse{Data: customers})
 }
 
 func (h *HTTP) get(ctx *gin.Context) {
@@ -50,7 +50,7 @@ func (h *HTTP) get(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(http.StatusOK, customer)
+	ctx.JSON(http.StatusOK, model.GetResponse{Data: customer})
 }
 
 func (h *HTTP) create(ctx *gin.Context) {
@@ -70,7 +70,10 @@ func (h *HTTP) create(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(http.StatusCreated, custID)
+	ctx.JSON(http.StatusCreated, model.CreateResponse{
+		ResponseMessage: model.ResponseMessage{Message: "data created successfully"},
+		CustID:          custID,
+	})
 }
 
 func (h *HTTP) update(ctx *gin.Context) {
@@ -95,7 +98,9 @@ func (h *HTTP) update(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(http.StatusOK, "data updated")
+	ctx.JSON(http.StatusOK, model.UpdateResponse{
+		ResponseMessage: model.ResponseMessage{Message: "data updated"},
+	})
 }
 
 func (h *HTTP) delete(ctx *gin.Context) {
@@ -115,5 +120,7 @@ func (h *HTTP) delete(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(http.StatusOK, "data deleted")
+	ctx.JSON(http.StatusOK, model.DeleteResponse{
+		ResponseMessage: model.ResponseMessage{Message: "data deleted"},
+	})
 }
